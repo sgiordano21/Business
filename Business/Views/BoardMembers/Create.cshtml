@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Business.Models.BoardMember
+
+<h4>Add a new board member</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(x => x.Name)
+    @Html.TextBoxFor(y => y.Name)
+
+    @Html.LabelFor(w => w.Description)
+    @Html.TextBoxFor(blah => blah.Description)
+
+    <input type="hidden" name="id" value=ViewBag.CharityId />
+    <input type="submit" value="Add Board Member" />
+}
+
+<p>@Html.ActionLink("Back to charity details", "Details", "Charities", new { id = @Model.CharityId })</p>

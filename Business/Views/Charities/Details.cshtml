@@ -14,7 +14,7 @@
 <ul>
     @if (@Model.BoardMembers.Count == 0)
     {
-        <p>No boad members found.</p>
+        <p>No board members found.</p>
     }
     @foreach (BoardMember whoever in @Model.BoardMembers)
     {
@@ -27,5 +27,7 @@
 {
     <input type="submit" value="Delete this charity" />
 }
+
+<p>@Html.ActionLink("Add a board member", "Create", "BoardMembers", new { id = @Model.CharityId })</p>
 
 <p>@Html.ActionLink("Back to Charities", "Index")</p>

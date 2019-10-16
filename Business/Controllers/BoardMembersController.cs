@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace Business.Controllers
 {
@@ -16,5 +17,26 @@ namespace Business.Controllers
             _db = db;
         }
 
+        public ActionResult Index()
+        {
+            List<BoardMember> model = _db.BoardMembers.Include(boardmembers => boardmembers.Charity).ToList();
+            return View(model);
+        }
+
+        public ActionResult Create(int CharityId)
+        {
+            ViewBag.CharityId = CharityId;
+            return View();
+        }
+
+        // [HttpPost]
+        // public ActionResult Create(BoardMember boardmember)
+        // {
+        //     _db.BoardMembers.Add(boardmember);
+        //     _db.SaveChanges();
+        //     Console.WriteLine("BOARDMEMBER.CHARITYID: " + boardmember.CharityId);
+        //     return RedirectToAction("");
+        //     // EXPLAIN THIS ROUTE
+        // }
     }
 }

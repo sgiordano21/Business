@@ -2,3 +2,20 @@
   Layout = "_Layout";
 }
 
+@using Business.Models;
+@model List<Business.Models.BoardMember>;
+
+  <h1>Board Members</h1>
+
+  @if (@Model.Count == 0)
+  {
+    <h3>No board members were found.</h3>
+  }
+
+  @foreach (BoardMember member in Model)
+  {
+    <li>member.Name, member.Description</li>
+  }
+
+  <p>@Html.ActionLink("Add new board member", "Create")</p>
+  <p>@Html.ActionLink("Back to charity details", "Details", "Charities")</p>

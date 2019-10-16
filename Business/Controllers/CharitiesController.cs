@@ -27,14 +27,14 @@ namespace Business.Controllers
         return View(thisCharity);
         }
 
-        [HttpPost, ActionName("Details")]
-        public ActionResult Destroy(int id)
-        {
-            var toBeDeleted = _db.Charities.FirstOrDefault(charities => charities.CharityId == id);
-            _db.Charities.Remove(toBeDeleted);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        // [HttpPost, ActionName("Details")]
+        // public ActionResult Destroy(int id)
+        // {
+        //     var toBeDeleted = _db.Charities.FirstOrDefault(charities => charities.CharityId == id);
+        //     _db.Charities.Remove(toBeDeleted);
+        //     _db.SaveChanges();
+        //     return RedirectToAction("Index");
+        // }
 
         public ActionResult Create()
         {
@@ -47,6 +47,16 @@ namespace Business.Controllers
         _db.Charities.Add(youGetThePicture);
         _db.SaveChanges();
         return RedirectToAction("Index");
+        }
+
+        // This one creates new Items within a given Category, not new Categories:
+        [HttpPost]
+        public ActionResult Create(int id, BoardMember boardMember)
+        {
+            boardMember.CharityId = id;
+            _db.BoardMembers.Add(boardMember);
+            _db.SaveChanges();
+            return RedirectToAction("Details");
         }
     }
 }
