@@ -14,5 +14,17 @@ namespace Business.Controllers
         {
             _db = db;
         }
+
+        public ActionResult Index()
+        {
+        List<Charity> model = _db.Charities.ToList();
+        return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+        Charity thisCharity = _db.Charities.FirstOrDefault(c => c.CharityId == id);
+        return View(thisCharity);
+        }
     }
 }

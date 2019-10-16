@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Business.Models;
+@model Business.Models.Charity;
+
+<h2>Charity Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(whatever => whatever.Name): @Html.DisplayFor(something => something.Name)</h3>
+
+<ul>
+    @if (@Model.BoardMembers.Count == 0)
+    {
+        <p>No boad members found.</p>
+    }
+    @foreach (BoardMember whoever in @Model.BoardMembers)
+    {
+        <li>Name: whoever.Name</li>
+        <li>More Info: whoever.Description</li>
+    }
+</ul>
+
+<p>@Html.ActionLink("Back to Charities", "Index")</p>

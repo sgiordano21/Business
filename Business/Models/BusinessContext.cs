@@ -8,7 +8,7 @@ namespace Business.Models
     public virtual DbSet<Charity> Charities { get; set; } 
     public DbSet<BoardMember> BoardMembers { get; set; }
 
-    public HunahContext(DbContextOptions options) : base(options) { }
+    public BusinessContext(DbContextOptions options) : base(options) { }
 
     }
 }
