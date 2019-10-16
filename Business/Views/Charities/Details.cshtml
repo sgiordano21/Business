@@ -5,10 +5,12 @@
 @using Business.Models;
 @model Business.Models.Charity;
 
-<h2>Charity Details</h2>
+<h2>@Html.DisplayNameFor(whatever => whatever.Name): @Html.DisplayFor(something => something.Name)</h2>
+<h4><em>@Html.DisplayFor(description => description.Description)</em></h4>
 <hr />
-<h3>@Html.DisplayNameFor(whatever => whatever.Name): @Html.DisplayFor(something => something.Name)</h3>
 
+
+<h4>Board Members:</h4>
 <ul>
     @if (@Model.BoardMembers.Count == 0)
     {
@@ -20,5 +22,10 @@
         <li>More Info: whoever.Description</li>
     }
 </ul>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete this charity" />
+}
 
 <p>@Html.ActionLink("Back to Charities", "Index")</p>

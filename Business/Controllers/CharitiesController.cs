@@ -27,6 +27,15 @@ namespace Business.Controllers
         return View(thisCharity);
         }
 
+        [HttpPost, ActionName("Details")]
+        public ActionResult Destroy(int id)
+        {
+            var toBeDeleted = _db.Charities.FirstOrDefault(charities => charities.CharityId == id);
+            _db.Charities.Remove(toBeDeleted);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Create()
         {
         return View();
