@@ -4,8 +4,8 @@ namespace Business.Controllers
 {
     public class HomeController : Controller
     {
-
-        [HttpGet("/")]
+        //path: /
+        [HttpGet]
         public ActionResult Index()
         {
             return View();

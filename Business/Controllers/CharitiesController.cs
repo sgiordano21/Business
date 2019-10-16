@@ -15,32 +15,28 @@ namespace Business.Controllers
             _db = db;
         }
 
+        //path: /Charities/
         public ActionResult Index()
         {
         List<Charity> model = _db.Charities.ToList();
         return View(model);
         }
 
+        //path: /Charities/Details/{CharityId}
         public ActionResult Details(int id)
         {
         Charity thisCharity = _db.Charities.FirstOrDefault(c => c.CharityId == id);
         return View(thisCharity);
         }
 
-        // [HttpPost, ActionName("Details")]
-        // public ActionResult Destroy(int id)
-        // {
-        //     var toBeDeleted = _db.Charities.FirstOrDefault(charities => charities.CharityId == id);
-        //     _db.Charities.Remove(toBeDeleted);
-        //     _db.SaveChanges();
-        //     return RedirectToAction("Index");
-        // }
-
+        //path: /Charities/Create
+        //to make this RESTful, we *could* give this GET method a route decorator to call it "new"
         public ActionResult Create()
         {
         return View();
         }
 
+        //add new charity to database, then redirect to charities index (path: /Charities/)
         [HttpPost]
         public ActionResult Create(Charity youGetThePicture)
         {
@@ -49,14 +45,21 @@ namespace Business.Controllers
         return RedirectToAction("Index");
         }
 
-        // This one creates new Items within a given Category, not new Categories:
-        [HttpPost]
-        public ActionResult Create(int id, BoardMember boardMember)
+        public ActionResult Delete(int id)
         {
-            boardMember.CharityId = id;
-            _db.BoardMembers.Add(boardMember);
-            _db.SaveChanges();
-            return RedirectToAction("Details");
+            var thisCharity = _db.Charities.FirstOrDefault(items => items.CharityId == id);
+
+            return View(thisCharity);
         }
+
+       [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var thisCharity = _db.Charities.FirstOrDefault(items => items.CharityId == id);
+            _db.Charities.Remove(thisCharity);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

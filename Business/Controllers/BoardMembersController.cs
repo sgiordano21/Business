@@ -29,14 +29,20 @@ namespace Business.Controllers
             return View();
         }
 
-        // [HttpPost]
-        // public ActionResult Create(BoardMember boardmember)
-        // {
-        //     _db.BoardMembers.Add(boardmember);
-        //     _db.SaveChanges();
-        //     Console.WriteLine("BOARDMEMBER.CHARITYID: " + boardmember.CharityId);
-        //     return RedirectToAction("");
-        //     // EXPLAIN THIS ROUTE
-        // }
+        [HttpPost("/boardmember/create")]
+        public ActionResult Create(BoardMember boardmember)
+        {
+            _db.BoardMembers.Add(boardmember);
+            _db.SaveChanges();
+            Console.WriteLine("BOARDMEMBER.CHARITYID: " + boardmember.CharityId);
+            
+            return RedirectToAction("Details", boardmember);
+        }
+
+        public ActionResult Details(int CharityId)
+        {
+            BoardMember thisMember = _db.BoardMembers.FirstOrDefault(d => d.BoardMemberId == CharityId);
+            return View(thisMember);
+        }
     }
 }
