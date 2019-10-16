@@ -26,5 +26,18 @@ namespace Business.Controllers
         Charity thisCharity = _db.Charities.FirstOrDefault(c => c.CharityId == id);
         return View(thisCharity);
         }
+
+        public ActionResult Create()
+        {
+        return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Charity youGetThePicture)
+        {
+        _db.Charities.Add(youGetThePicture);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+        }
     }
 }
