@@ -23,22 +23,49 @@ namespace Business.Controllers
             return View(model);
         }
 
-        public ActionResult Create(int CharityId)
+        // public ActionResult Create(int CharityId)
+        // {
+        //     ViewBag.CharityId = CharityId;
+        //     return View();
+        // }
+
+        // [HttpPost()]
+        // public ActionResult Create(BoardMember boardmember)
+        // {
+        //     _db.BoardMembers.Add(boardmember);
+        //     _db.SaveChanges();
+        //     Console.WriteLine("BOARDMEMBER.CHARITYID: " + boardmember.CharityId);
+            
+        //     return RedirectToAction("Details", boardmember);
+        // }
+
+
+        // [HttpGet]
+        public ActionResult Create()
         {
-            ViewBag.CharityId = CharityId;
+            ViewBag.CharityId = new SelectList(_db.Charities, "CharityId", "Name");
             return View();
         }
 
-        [HttpPost("/boardmember/create")]
-        public ActionResult Create(BoardMember boardmember)
+        [HttpPost]
+        public ActionResult Create(BoardMember boardMember)
         {
-            _db.BoardMembers.Add(boardmember);
+            _db.BoardMembers.Add(boardMember);
             _db.SaveChanges();
-            Console.WriteLine("BOARDMEMBER.CHARITYID: " + boardmember.CharityId);
-            
-            return RedirectToAction("Details", boardmember);
+            return RedirectToAction("Index");
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public ActionResult Details(int CharityId)
         {
             BoardMember thisMember = _db.BoardMembers.FirstOrDefault(d => d.BoardMemberId == CharityId);

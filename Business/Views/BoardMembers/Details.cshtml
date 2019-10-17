@@ -5,5 +5,16 @@
 @using Business.Models;
 @model Business.Models.BoardMember;
 
-  <h1>@Model.Name</h1>
-  <p>@Model.Description</p>
+  <h2>Board Member Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)<h3>
+
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)<h3>
+
+
+
+<p>@Html.ActionLink("Delete Member", "Delete", new { id = Model.BoardMemberId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+
+<p>@Html.ActionLink("Back to Main Page", "Index", "Home")</p>
