@@ -5,20 +5,13 @@
 @using Business.Models;
 @model Business.Models.Charity;
 
-<h2>@Html.DisplayNameFor(whatever => whatever.Name): @Html.DisplayFor(something => something.Name)</h2>
-<h4><em>@Html.DisplayFor(description => description.Description)</em></h4>
-<hr />
 
+<h2>Are you sure you want to delete this?</h2>
 
-<h4>Board Members:</h4>
-<ul>
-    @if (@Model.BoardMembers.Count == 0)
-    {
-        <p>No board members found.</p>
-    }
-    @foreach (BoardMember whoever in @Model.BoardMembers)
-    {
-        <li>Name: whoever.Name</li>
-        <li>More Info: whoever.Description</li>
-    }
-</ul>
+@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}
+<p>@Html.ActionLink("Delete Charity", "Delete", new { id = Model.CharityId })</p>
+@Html.ActionLink("Back to List", "Index")

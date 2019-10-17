@@ -45,6 +45,8 @@ namespace Business.Controllers
         return RedirectToAction("Index");
         }
 
+        
+        
         public ActionResult Delete(int id)
         {
             var thisCharity = _db.Charities.FirstOrDefault(items => items.CharityId == id);
